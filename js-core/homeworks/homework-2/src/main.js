@@ -68,8 +68,8 @@ console.log(myObj)
  */
 
 let frameworks = [4.7, 'Angular', '6Angular', 'React/Redux'];
-let numb = Math.floor(frameworks[0])
-let x =  `google released new version ${frameworks[1]} ${numb}. But real speed is ${frameworks.slice(-1)}`;
+let numb = '' + frameworks[0]
+let x =  `google released new version ${frameworks[1]} ${numb.slice(0, -2)} But real speed is ${frameworks.slice(-1)}`;
 console.log(x)
 
 // LINKS
