@@ -120,11 +120,9 @@
     Если передаваемое число не кратно 3 или 5, то вернуть указанный параметр
     */
 
-    function fizzBuzz(param){
-        for (var i = 1; i <= param; i++) {
-            var f = param % 3 == 0, b = param % 5 == 0;
-            return f ? b ? "FizzBuzz" : "Fizz" : b ? "Buzz" : i
-          }
+    function fizzBuzz(param){   
+        var f = param % 3 == 0, b = param % 5 == 0;
+        return f ? b ? "FizzBuzz" : "Fizz" : b ? "Buzz" : param 
     }
     console.log(fizzBuzz(1)) // 1
     console.log(fizzBuzz(2)) // 2
