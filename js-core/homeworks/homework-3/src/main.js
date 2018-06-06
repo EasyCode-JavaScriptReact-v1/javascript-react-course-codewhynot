@@ -121,10 +121,10 @@
     */
 
     function fizzBuzz(param){
-        if((param % 3) == 0 && (param % 5) == 0){return 'FizzBuzz'}
-        else if((param % 3) == 0){ return 'Fizz'}
-        else if((param % 5) == 0){ return 'Buzz' }
-        else{return param}
+        for (var i = 1; i <= param; i++) {
+            var f = param % 3 == 0, b = param % 5 == 0;
+            return f ? b ? "FizzBuzz" : "Fizz" : b ? "Buzz" : i
+          }
     }
     console.log(fizzBuzz(1)) // 1
     console.log(fizzBuzz(2)) // 2
