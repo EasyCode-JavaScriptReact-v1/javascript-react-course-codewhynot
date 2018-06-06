@@ -69,7 +69,7 @@ console.log(myObj)
 
 let frameworks = [4.7, 'Angular', '6Angular', 'React/Redux'];
 let x = `google released new version ${frameworks[1]} ${String(frameworks[0]).slice(0, -2)} But real speed is ${frameworks.slice(-1)}`
-console.log(x)
+console.log(x)  
 
 // LINKS
 // https://dorey.github.io/JavaScript-Equality-Table/
