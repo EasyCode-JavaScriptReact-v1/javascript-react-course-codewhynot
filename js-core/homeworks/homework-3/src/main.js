@@ -26,9 +26,10 @@
     }
 
     function returnObj (obj){
+        let up = obj.name.toUpperCase()
         let modifyObj = {
-            name: String(obj.name).toUpperCase()
-        }
+            name: up
+        }        
         return modifyObj
     }
     let someObjMod = returnObj(myObj)
@@ -123,7 +124,7 @@
         if((param % 3) == 0 && (param % 5) == 0){return 'FizzBuzz'}
         else if((param % 3) == 0){ return 'Fizz'}
         else if((param % 5) == 0){ return 'Buzz' }
-        else{return param}    
+        else{return param}
     }
     console.log(fizzBuzz(1)) // 1
     console.log(fizzBuzz(2)) // 2
