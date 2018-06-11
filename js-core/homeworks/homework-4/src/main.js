@@ -5,95 +5,95 @@
 * Если тип аргумента Строка и длина этой строки не равна 10 -> возвращать "длина вашей строки: <длина строки>
 * Если длина 10 -> 'you win'
 * */
-let objCheck = {
+let obj = {
     name: 'aloe'
 };
-let numbCkeck = 15;
-let stringCheck = 'aloe vera lorem ipsum';
-let stringTenCheck = 'aloe vera.';
-let funcCheck = function(){
+let num = 15;
+let stringALotLength = 'aloe vera lorem ipsum';
+let stringWithLength10 = 'aloe vera.';
+let func = function(){
     return 'yes it is';
 };
 
 function check(param){
-    let numOrObject = typeof param === 'number' || typeof param === 'object';
-    let functionType = typeof param === 'function';
-    let stringType = typeof param === 'string' && param.length != 10;
-    let stingTenType = typeof param === 'string' && param.length === 10;
-
-    if(numOrObject) return true;
-    else if(functionType) return false;
-    else if(stringType) return 'Длина вашей строки:' + param.length;
-    else if(stingTenType) return 'you win';
-
+    let isNumOrObject = typeof param === 'number' || typeof param === 'object';
+    let isFunction = typeof param === 'function';
+    let isString = typeof param === 'string';
+    let stringLength10 = param.length === 10;
+    let stringLengthNot10 = param.length != 10;
+    if(isNumOrObject){
+        return true;
+    }
+    else if(isFunction){
+        return false;
+    }
+    else if(isString && stringLengthNot10){
+        return 'Длина вашей строки:' + param.length;
+    }
+    else if(isString && stringLength10){
+        return 'you win';
+    }
     return param;
-}
+};
 
-console.log(check(numbCkeck));
-console.log(check(objCheck));
-console.log(check(funcCheck));
-console.log(check(funcCheck));
-console.log(check(stringCheck));
-console.log(check(stringTenCheck));
-
+console.log(check(obj));
+console.log(check(num));
+console.log(check(stringALotLength));
+console.log(check(stringWithLength10));
+console.log(check(func));
 //==============================================================================================
-
 /*
 * Напишите функцию которая принимает 2 числа
 * и возвращает массив содержащий числа между первым числом и вторым числом;
  */
-
-
- function betweenNumbers(num1,num2){
-    let arr = [];
-    for(let i = num1; i < num2 + 1; i++){
-    arr[i] = i;
-    };
-    arr.splice(0,arr.indexOf(num1));
-    return arr;
- }
-
- console.log(betweenNumbers(20,45))
-
+ function betweenNumbers(number1,number2){
+    let array = [];
+    let delta = number2 - number1;
+    for(let i = number1; i < number2 +1; i++){
+        array[i - number1] = i;
+    }    
+    return array;
+ };
+ console.log(betweenNumbers(25,64));
 //==============================================================================================
-
-
 /*
  2. Перепишите задачу FizzBuzz, но с использованием цикла.
  Расчет чисел должен идти до 100
  */
-
 function fizzBuzz100(num){    
-    for(let i = 0; i < 101; i++){
-        let str;
-        if(i % 3 === 0 && i % 5 === 0) str ='FizzBuzz';
-        else if(i % 3 === 0) str = 'Fizz';
-        else if(i % 5 === 0) str = 'Buzz';
-        else{str = i;}
+    let str;
+    for(let i = 0; i < 101; i++){        
+        if(i % 3 === 0 && i % 5 === 0){
+            str ='FizzBuzz';
+        }
+        else if(i % 3 === 0){
+            str = 'Fizz';
+        }
+        else if(i % 5 === 0){
+            str = 'Buzz';
+        }
+        else{
+            str = i;
+        }
         console.log(str);
     } 
 }
 fizzBuzz100();
-
 //==============================================================================================
-
-
 /*
  3. Напишите функцию которая принимает 1 аргумент - массив
  И возвращает новый массив содержащий типы значений переменных
  */
-
 let arr = [1, null, undefined, 'str', {}, [], function() {}];
 
 function typeCheck(param){
-    let newArr = [];
+    let newArray = [];
     for(let i = 0; i < param.length; i++){
-        newArr[i] = typeof param[i];
+        newArray[i] = typeof param[i];
     }
-    return newArr;
+    return newArray;
 };
-console.log(typeCheck(arr))
-
+console.log(typeCheck(arr));
 //==============================================================================================
 
 
@@ -105,26 +105,21 @@ console.log(typeCheck(arr))
  2. На основании нового массива, создайте новую функцию, которая вернет новый массив
   содержащий все объекты содержащие свойство unknownAge: true
  */
-
 let array = Array.from({length: 35},
     (value, index) => (index % 2 ? {age: index + 2} : {age: NaN}),
 );
 
-
 function solution(arr) {
-    let newArr = [];
+    let newArray = [];
     for(let i = 0; i < arr.length; i++){
         let obj = arr[i];
-        let thisKey = obj.age;
-        if(isNaN(thisKey)){
-            thisKey.unknownAge = true;
-            newArr.push(obj)
+        let objKey = obj.age;
+        if(isNaN(objKey)){
+            objKey.unknownAge = true;
+            newArray.push(obj);
         }
-    }
-    return newArr;
+    };
+    return newArray;
 }
-
-console.log(solution(array))
-
-
+console.log(solution(array));
 //==============================================================================================
