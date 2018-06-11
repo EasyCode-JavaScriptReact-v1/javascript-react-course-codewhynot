@@ -48,7 +48,6 @@ console.log(check(func));
  */
  function betweenNumbers(number1,number2){
     let array = [];
-    let delta = number2 - number1;
     for(let i = number1; i < number2 +1; i++){
         array[i - number1] = i;
     }    
