@@ -109,9 +109,23 @@ console.log(nameShuffler('James Bond'));
  capMe(['KARLY', 'DANIEL', 'KELSEY']) // returns ['Karly', 'Daniel', 'Kelsey']
  */
 
-function capMe(arr) {
+let capArr1 = ['jo', 'nelson', 'jurie'];
+let capArr2 = ['KARLY', 'DANIEL', 'KELSEY'];
 
+function capMe(arr) {
+    let result = [];
+    arr.forEach(function(elem,index,arr){
+        let fixElement = elem.toLowerCase();
+        let capElement = fixElement[0].toUpperCase()
+        let separateElement = fixElement.slice(1);
+        let elems = `${capElement}${separateElement}`
+        result.push(elems);
+    });
+    return result;
 }
+console.log(capMe(capArr1))
+console.log(capMe(capArr2))
+
 
 // @SUPER
 /*
@@ -125,6 +139,7 @@ function capMe(arr) {
  */
 
 function random(arr) {
+    
 }
 
 random([1, 3, 5, 9]);
