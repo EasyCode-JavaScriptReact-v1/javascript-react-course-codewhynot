@@ -305,14 +305,12 @@ let megaObject = {
   index: 0,
   _id: '584bac50967253d4322db586',
 };
-
 /*
  *
  * TASK 1
  * Посчитайте количество букв а, в передаваемом параметре
  *
  * */
-
 let randomString = 'aaa b a w c ';
 
 let user = {
@@ -322,29 +320,15 @@ let user = {
 let javaScript = {
   html: 'JavaScript',
 };
-
 function countLetterA(str) {
   let newArray = str.split(' ');
-  //   let letters = [];
-  //   for(let i = 0; i < str.length; i++){
-  //       let char = str[i].indexOf('a',0);
-  //       if (char === 0 ){
-  //           letters.push(char);
-  //       }
-  //  }
   return newArray.reduce(function(accum,element,index,array){
     element.indexOf('a',0) && accum.push(element); 
      return accum;
   }, []).length
-   
 }
 console.log(countLetterA(randomString))
 console.log(countLetterA(user.name + javaScript.html))
-
-// console.log(countLetterA(randomString)); // 4
-// console.log(countLetterA(user.name + javaScript.html)); // 3
-
-// ! ! ! ! ! ! ! ! ! ! !
 /*
  *
  * TASK 2
@@ -353,50 +337,24 @@ console.log(countLetterA(user.name + javaScript.html))
  *
  * */
 
-let text = 'You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM';
-let text1 = 'The Document Object Model (DOM) is a programming interface for HTML and XML documents';
-
-function reverseEachWord(str,boolean) {
-    let strArray = str.split(' ');
-    let arr = [];   
-    // strArray.forEach(function(elem,index){
-    //     let elemArray = elem.split('');
-    //     let reverseChars = elemArray.reverse();
-    //     let joinString = reverseChars.join('')
-    //     arr.push(joinString);
-    // })
-    let newString = strArray.reduce(function(accum,element){
-      return accum += ' ' + element.split('').reverse().join('');  
-    },'');
-        
-    return boolean ? newString.split(' ').reverse().join(' ') : newString;
-}
-console.log(reverseEachWord(text,true));
-console.log(reverseEachWord(text1,true));
-
-
-// console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM'));
-// uoY t'nod evah ot od gnihtyna laiceps ot nigeb gnisu eht .MOD tnereffiD sresworb evah tnereffid snoitatnemelpmi fo eht MOD
-
-//console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents'));
-// ehT tnemucoD tcejbO ledoM )MOD( si a gnimmargorp ecafretni rof LMTH dna LMX stnemucod
-
-/*
+ /*
  * TASK 3
  * Добавьте в функцию reverseEachWord второй параметр,
  * данный параметр булево, если true - тогда предложение так же
  * переворачиваются в обратном порядке
  * */
+let text = 'You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM';
+let text1 = 'The Document Object Model (DOM) is a programming interface for HTML and XML documents';
 
-//console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
-//MOD eht fo snoitatnemelpmi tnereffid evah sresworb tnereffiD .MOD eht gnisu nigeb ot laiceps gnihtyna od ot evah t'nod uoY
-//console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents', true));
-// stnemucod LMX dna LMTH rof ecafretni gnimmargorp a si )MOD( ledoM tcejbO tnemucoD ehT
-
-//console.log(reverseEachWord('Hi my Name is', false));
-// iH ym emaN si
-
-/* TASK 3
+function reverseEachWord(str,boolean) {
+    let newString = str.split(' ').reduce(function(accum,element){
+      return accum += ' ' + element.split('').reverse().join('');  
+    },'');
+    return boolean ? newString.split(' ').reverse().join(' ') : newString;
+}
+console.log(reverseEachWord(text,true));
+console.log(reverseEachWord(text1,true));
+/* TASK 4
  * Посчитайте сколько одинаковых слов в предложении.
  * Функция должна возвращать объект у которого свойства
  * это повторяющиеся слово,
@@ -417,42 +375,21 @@ console.log(
   wordCounter('Both Java and Java Script is programming and programming OOPBased Language'),
 );
 /*
- {
- Both:1,
- Java:2,
- and:2,
- Script: 1,
- is: 1
- programming: 2
- OOPBased:1,
- Language:1
- }
+ { Both:1, Java:2, and:2, Script: 1, is: 1, programming: 2, OOPBased:1, Language:1}
  */
-
 console.log(wordCounter('asd qwe asd'));
 /*
- {
- asd:2
- qwe:1
- }
+ { asd:2, qwe:1 }
  * */
-
 console.log(wordCounter('url http url www url http'));
-
 /*
- {
- http:2,
- url:3,
- www:1
- }
+ { http:2, url:3, www:1 }
  * */
 
 /*
-  TASK 4
-
+  TASK 5
  // Функция принимает массив у которого есть свойста _id и Company.
  // верните объект, у которого ключ это _id, а значение Company
-
  */
 
 function createHashTags(arr) {
@@ -461,7 +398,6 @@ function createHashTags(arr) {
         return accum; 
     },{})
 }
-
 console.log(createHashTags(listOfCompanys));
 //{"584babb6eeb4137cf14c37a3":"ASIMILINE", '584babb6eeb4137cf14c37a3':'Company2', }
 
@@ -472,23 +408,16 @@ console.log(createHashTags(listOfCompanys));
  * Выведите уникальные значения
  *
  * */
-
 function uniqueElements(arr) {
     return arr.reduce(function(accum, element){
         accum.indexOf(element) === -1 && accum.push(element)
         return accum;        
     }, []);
 }
-
-//
 let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
-//
+
 console.log(uniqueElements(notUniqArray)); //1,2,5,10,25,30,0,22,3,
 console.log(uniqueElements([1, 1, 2, 3, 3])); // 1,2,3
-
-
-
-
 
 
 //reduce implement function ===============================================================================
@@ -500,10 +429,10 @@ function reduceImplement(array, callback, accum) {
     for(var i = 0; i < array.length; i++) {
         accum = callback(accum, array[i], i, array);
     }
-
     return accum;
 }
 
+//reduce implement function ===============================================================================
 
 function reduceImplementFunc(arr){
   return reduceImplement(arr,function(accum,element,index,array){
@@ -514,14 +443,6 @@ function reduceImplementFunc(arr){
 
 console.log(reduceImplementFunc(arrayForImplement));
 
-//reduce implement function ===============================================================================
-
-
-
-
-
-//filter implement function ===============================================================================
-
 /*
 *
 * super2
@@ -531,20 +452,7 @@ console.log(reduceImplementFunc(arrayForImplement));
 *
 * */
 
-
-// let resultFiltered = notUniqArray.filter(function(value, index,array){
-//   return value > 5
-// })
-
-let obj = {
-  0: 0,
-  2: 2,
-  1: 1,
-  3: 3,
-  length: 4 
-}
-console.log(obj);
-
+//filter implement function ===============================================================================
 function filterImplement (array,callback){
   let result = [];
   for(let i = 0; i < array.length; i++){
@@ -552,16 +460,12 @@ function filterImplement (array,callback){
   }
   return result;
 };
-
-let resultFilteredObj = filterImplement(obj,function(value, index,array){
-    return value > 2
-})
+//filter implement function ===============================================================================
 
 let resultFilteredArray = filterImplement(arrayForImplement,function(value, index,array){
   return value > 2
 })
 
-console.log(resultFilteredObj)
 console.log(resultFilteredArray)
 
-//filter implement function ===============================================================================
+
