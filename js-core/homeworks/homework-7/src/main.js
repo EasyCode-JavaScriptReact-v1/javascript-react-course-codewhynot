@@ -1,14 +1,5 @@
 'use strict';
 
-/*
- *
- * TASK 1
- *
- * Напишите функцию которая будет вызываться трижды и складывать
- * все передаваемые ей числа
- *
- * */
-
 function add(x) {
     return function(x){
         return function(x){
@@ -16,23 +7,6 @@ function add(x) {
         }
     }
 }
-
-console.log(add(1)(2)(3)); // 6
-console.log(add(10)(5)(15)); // 30
-
-/*
- *
- * TASK 2
- *
- * Напишите функцию которая возвращает объект и одно из свойств объекта
- * это функция
- * После каждого нового вызова метода объекта(функции объекта) в консоле должно отображаться
- * число на 1 больше чем предыдущее
- * ---------------------------------------
- * так же у объекта должен быть метод обнуления счетчика
- * Узнать счетчик напрямую в объекте, нельзя
- *
- * */
 
 function patternModule() {
     let count = 0;
@@ -47,45 +21,16 @@ function patternModule() {
     }
 }
 
-// patternModule
-
-let test = patternModule(); 
-console.log(test.method()); 
-console.log(test.method()); 
-console.log(test.method()); 
-
-console.log(test.reset());
-
-console.log(test.method());
-console.log(test.method());
-console.log(test.method()); 
-
-/*
- * TASK 3
- *
- * Напишите функцию которая принимает 4 аргумента:
- *
- * -  Объект
- * -  Имя свойства с которым связывается метод
- * -  Сколько раз можно вызвать метод *
- * -  Объявление привязываемого метода ( функция )
- *
- *  При вызове метода отобразите сумму передаваемых
- *  параметров.
-
- *  Когда заканчивается счетчик, отображается ошибка
- *
- * */
-
 let jun = {};
-
 function methodCounter(obj, name, num, fn) {   
     obj[name] = fn;
-    obj.count = +num + 1 || 0;
+    obj.count = num + 1 || 0;
     obj.addCounter = function(qty){
         obj.count = qty || 0;
+        return `Counter added ${qty} ;)`
     }
 };
+
 methodCounter(jun,'logger',2,function(...args){     
     this.count--;
     this.count < 0 ? this.count = 0 : null;
@@ -94,25 +39,5 @@ methodCounter(jun,'logger',2,function(...args){
     }, 0);   
     return this.count > 0 ? `Sum ${result}` : 'ERROR ! add more methods';
 })
-
-
-console.log(jun.logger(1,2,3,4))
-console.log(jun.logger(5,5,5,5))
-console.log(jun.logger(5,5))
-console.log(jun.logger(5,5))
-console.log(jun.logger(5,5))
-
-// @SUPER,
-
-/*
- * Добавьте функции methodCounter, возможность увеличивать счетчик
- * на заданное число
- *
- * */
-
-jun.addCounter(10)
-console.log(jun.logger(5,5))
-console.log(jun.logger(5,5))
-console.log(jun.logger(5,5))
 
 
