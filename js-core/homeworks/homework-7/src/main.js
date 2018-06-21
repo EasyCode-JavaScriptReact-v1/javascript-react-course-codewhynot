@@ -61,7 +61,7 @@ console.log(test.method());
 console.log(test.method()); 
 
 /*
- * TASK 1
+ * TASK 3
  *
  * Напишите функцию которая принимает 4 аргумента:
  *
@@ -79,19 +79,29 @@ console.log(test.method());
 
 let jun = {};
 
-function methodCounter(obj, name, num, fn) {
-    
-}
+function methodCounter(obj, name, num, fn) {   
+    obj[name] = fn;
+    obj.count = +num + 1 || 0;
+    obj.addCounter = function(qty){
+        obj.count = qty || 0;
+    }
+};
+methodCounter(jun,'logger',2,function(...args){     
+    this.count--;
+    this.count < 0 ? this.count = 0 : null;
+    let result = args.reduce(function(accum,val){
+        return accum + val;
+    }, 0);   
+    return this.count > 0 ? `Sum ${result}` : 'ERROR ! add more methods';
+})
 
-methodCounter(jun, 'logger', 2, function (args) {
 
-});
+console.log(jun.logger(1,2,3,4))
+console.log(jun.logger(5,5,5,5))
+console.log(jun.logger(5,5))
+console.log(jun.logger(5,5))
+console.log(jun.logger(5,5))
 
-jun.logger(1, 2, 3, 4); // 2, 10
-jun.logger(5, 5, 5, 5); // 1, 20
-jun.logger(5, 5); // ERROR ! add more methods
-
-jun.addCounter(10, methodName);
 // @SUPER,
 
 /*
@@ -99,3 +109,10 @@ jun.addCounter(10, methodName);
  * на заданное число
  *
  * */
+
+jun.addCounter(10)
+console.log(jun.logger(5,5))
+console.log(jun.logger(5,5))
+console.log(jun.logger(5,5))
+
+
