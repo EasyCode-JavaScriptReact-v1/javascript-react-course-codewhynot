@@ -412,6 +412,10 @@ function uniqueElements(arr) {
         accum.indexOf(element) === -1 && accum.push(element)
         return accum;        
     }, []);
+
+    return arr.filter(function(val,i,arr){
+      return arr.indexOf(value) === i;
+    })
 }
 let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
 
@@ -455,7 +459,8 @@ function reduceImplementFunc(arr){
 function filterImplement (array,callback){
   let result = [];
   for(let i = 0; i < array.length; i++){
-    callback(array[i],i,array) && result.push(array[i]);
+    callback(array[i],i,array) &&
+    result.push(array[i]);
   }
   return result;
 };
@@ -465,6 +470,6 @@ let resultFilteredArray = filterImplement(arrayForImplement,function(value, inde
   return value > 2
 })
 
-// console.log(resultFilteredArray)
+console.log(resultFilteredArray)
 
 
