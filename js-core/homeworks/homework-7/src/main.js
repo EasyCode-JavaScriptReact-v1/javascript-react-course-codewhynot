@@ -3,7 +3,7 @@
 function add(x) {
     return function(y){
         return function(z){
-            return `Sum = ${x+y+z}`;
+            return x+y+z;
         }
     }
 }
@@ -11,13 +11,13 @@ function add(x) {
 console.log(add(10)(20)(50))
 
 function patternModule() {
-    let count = 1;
+    let count = 0;
     return {
         method: function(){
-            return `Counter = ${count++}`;
+            return ++count;
         },
         reset: function(){
-            count = 1;
+            count = 0;
             return 'Counter is reset ;)';
         }
     }
@@ -34,20 +34,18 @@ console.log(check.method())
 let jun = {};
 function methodCounter(obj, name, num, fn) {
 
-    let state = {
-        count: num
-    }
+    let state = num;
 
     obj.addCounter = function(qty){
-        state.count = qty;
+        state = qty;
         return `Add to count ${qty}`
     }
 
     obj[name] = function(...args) {
-        if(state.count === 0){
+        if(state === 0){
             return 'ERROR ! add more methods';
         }
-        state.count--
+        state--
         return fn(...args);
     };
 
