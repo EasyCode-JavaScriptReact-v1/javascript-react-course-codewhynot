@@ -347,13 +347,12 @@ let text = 'You don\'t have to do anything special to begin using the DOM. Diffe
 let text1 = 'The Document Object Model (DOM) is a programming interface for HTML and XML documents';
 
 function reverseEachWord(str,boolean) {
-    let newString = str.split(' ').reduce(function(accum,element){
-      return accum += ' ' + element.split('').reverse().join('');  
-    },'');
-    return boolean ? newString.split(' ').reverse().join(' ') : newString;
+    let wordReverse = str.split('').reverse().join('');
+    let reverse = wordReverse.split(' ').reverse().join(' ');
+    return !boolean ? reverse : wordReverse;
 }
 console.log(reverseEachWord(text,true));
-console.log(reverseEachWord(text1,true));
+console.log(reverseEachWord(text1,false));
 /* TASK 4
  * Посчитайте сколько одинаковых слов в предложении.
  * Функция должна возвращать объект у которого свойства
@@ -441,7 +440,7 @@ function reduceImplementFunc(arr){
   }, []);
 }
 
-console.log(reduceImplementFunc(arrayForImplement));
+// console.log(reduceImplementFunc(arrayForImplement));
 
 /*
 *
@@ -466,6 +465,6 @@ let resultFilteredArray = filterImplement(arrayForImplement,function(value, inde
   return value > 2
 })
 
-console.log(resultFilteredArray)
+// console.log(resultFilteredArray)
 
 
