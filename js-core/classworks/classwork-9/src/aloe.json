@@ -1,0 +1,10 @@
+{
+    "aloe": "vera",
+    "version": 15,
+    "dependency": {
+        "react": "16.4.0",
+        "babel": false
+    },
+    "something": ["aloe","vera"],
+    "null": null
+}
