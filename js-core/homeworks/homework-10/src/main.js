@@ -29,29 +29,11 @@ z(x); // что вернет
 */
 //===========================================================================
 
-
-
-
-
 /*
  *
  * TASK 1
  * Создайте функцию которая будет превращать
  * передаваемую строку в html тэг
- *
- *
- * */
-
-let $ = function(arg) {
-    return `<${arg}>` + `</${arg}>`
-};
-
-let createBODY = $('body');
-let createDIV = $('div');
-// console.log(createBODY); // <body></body>
-// console.log(createDIV); // <div></div>
-
-/*
  *
  * TASK 2
  *
@@ -62,32 +44,33 @@ let createDIV = $('div');
  *  Передаваемые аргументы должны быть только в виде строки
  * */
 
+
+let $ = function (arg,some) {
+    return some ? `<${arg}>${some}</${arg}>` : `<${arg}></${arg}>`
+};
+
 var ezjQuery = {
     add: add,    
     saveState: saveState,
     render: render,
-    state: []
+    data: []
 };
-console.log(ezjQuery.add('body').add('div').add('ul').render());
+console.log(ezjQuery.add('body').add('div').add('ul').add('li').add('a','link').render());
 
-function add(param) {
-    
-    this.saveState($(param));
+function add (tag,inner) {
+    this.saveState($(tag,inner));
     return this;
 }
 
-function saveState(param){
-    let state = this.state;
-    let save = function(some){
-        state.push(some);
-    };
-    return save(param);
+function saveState (arg) {
+    let data = this.data;
+    data.push(arg);
+}
+function render () {
+    let data = this.data;
+    return data;
 }
 
-
-function render(){
-    return this.state;
-}
 
 
 /*
