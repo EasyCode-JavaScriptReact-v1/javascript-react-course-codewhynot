@@ -50,7 +50,7 @@ function Http() {
       }
     };
   this.next = function () {
-    console.log(`${this.ctx.res.message} is ${this.ctx.res.status} - from function "next()" `);
+    console.log(`${this.ctx.res.message} is ${this.ctx.res.status} - from function "next()"`);
   }
 }
 
@@ -93,23 +93,54 @@ function Human (obj) {
   this.height = obj.height;
   this.weight = obj.weight;
 }
-function Worker (obj) {
-  Human.apply(this, ...obj);
+function Worker (...obj) {
+  let objArgs = obj.reduce( val => val);
+  Human.apply(this, obj); 
+  this.workPlace = objArgs.workPlace;
+  this.salary = objArgs.salary;   
+  this.toWork = function () {
+    console.log(`${this.name} is work, right now.`);
+  }   
+}
+function Student(...obj){
+  let objArgs = obj.reduce( val => val);
+  Human.apply(this, obj); 
+  this.studyPlace = objArgs.studyPlace;
+  this.scholarship = objArgs.scholarship;
+  this.toWatchShow = function () {
+    console.log(`${this.name} is watching the show.`);
+  }
 }
 
-let newWorker = new Worker({name: 'Aloe', age: 24, gender: 'Male', height: 182, weight: 72})
 
-let vasya = new Human({name: 'Aloe', age: 24, gender: 'Male', height: 182, weight: 72})
 
-console.log(newWorker)
+let vasya = new Human({name: 'Vasya', age: 24, gender: 'Male', height: 182, weight: 72});
+let grisha = new Worker({name: 'Grisha', age: 20, gender: 'Male', height: 178, weight: 65, salary: '2500$', workPlace: 'Microsoft'});
+let ira = new Student({name: 'Ira', age: 19, gender: 'Female', height: 165, weight: 50, scholarship: '500$', studyPlace: 'Oksford '});
+
+console.log(vasya);
+
+console.log(grisha);
+grisha.toWork();
+
+console.log(ira);
+ira.toWatchShow();
+
+
 
 // @SUPER
-
 /*
- *
  * TASK 0
  * Создайте функцию обертку над другой функцией
  * Каждый раз при вызове внутренней функции в консоле будут отображаться аргументы функции
  * которую мы обернули
- *
 */
+
+function showArgs(f){
+    f.apply(this);
+    console.log(arguments)
+}
+function aloe (param1,param2,param3){}
+
+showArgs(aloe)
+
