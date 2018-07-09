@@ -34,13 +34,37 @@
  *
  * */
 
-function Http() { }
-Http.prototype.createServer = function(fn) {
 
+function Http() {
+  this.ctx = {
+      req :{
+        PORT: 8080,
+        url: 'localhost'
+      },
+      res: {
+        status: 0,
+        message: 'Server status',
+        header: {
+          type: 'application/json'
+        }
+      }
+    };
+  this.next = function () {
+    console.log(`${this.ctx.res.message} is ${this.ctx.res.status} - from function "next()" `);
+  }
+}
+
+Http.prototype.createServer = function(fn) {
+  this.func = function (){
+    return fn(this.ctx, this.next());
+  };
+  return this;
 }
 
 Http.prototype.listen = function(PORT, host) {
-
+  console.log(`Server running on http://${host}:${PORT}`);
+  this.func();
+  return this
 }
 
 const server = new Http().createServer(function(ctx, next) {
@@ -58,6 +82,26 @@ const server = new Http().createServer(function(ctx, next) {
 // Создать несколько экземпляров классов Worker и Student, вывести их в консоль.
 // Убедиться что они имеют поля родительского класса Human
 
+
+
+
+
+function Human (obj) {  
+  this.name = obj.name;
+  this.age = obj.age;
+  this.gender = obj.gender;
+  this.height = obj.height;
+  this.weight = obj.weight;
+}
+function Worker (obj) {
+  Human.apply(this, ...obj);
+}
+
+let newWorker = new Worker({name: 'Aloe', age: 24, gender: 'Male', height: 182, weight: 72})
+
+let vasya = new Human({name: 'Aloe', age: 24, gender: 'Male', height: 182, weight: 72})
+
+console.log(newWorker)
 
 // @SUPER
 
