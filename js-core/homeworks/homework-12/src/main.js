@@ -35,8 +35,9 @@
  * */
 
 
-function Http() {
-  this.ctx = {
+class Http{
+  constructor () {
+    this.ctx = {
       req :{
         PORT: 8080,
         url: 'localhost'
@@ -49,23 +50,23 @@ function Http() {
         }
       }
     };
-  this.next = function () {
-    console.log(`${this.ctx.res.message} is ${this.ctx.res.status} - from function "next()"`);
+    this.next = function () {
+      console.log(`${this.ctx.res.message} is ${this.ctx.res.status} - from function "next()"`);
+    };
+  }
+  createServer (fn) {
+    this.func = function (){
+      return fn(this.ctx, this.next());
+    };
+    return this;
+  }
+  listen (PORT, host) {
+    console.log(`Server running on http://${host}:${PORT}`);
+    this.func();
+    return this
   }
 }
 
-Http.prototype.createServer = function(fn) {
-  this.func = function (){
-    return fn(this.ctx, this.next());
-  };
-  return this;
-}
-
-Http.prototype.listen = function(PORT, host) {
-  console.log(`Server running on http://${host}:${PORT}`);
-  this.func();
-  return this
-}
 
 const server = new Http().createServer(function(ctx, next) {
   console.log(ctx);
@@ -83,36 +84,37 @@ const server = new Http().createServer(function(ctx, next) {
 // Убедиться что они имеют поля родительского класса Human
 
 
-
-
-
-function Human (obj) {  
-  this.name = obj.name;
-  this.age = obj.age;
-  this.gender = obj.gender;
-  this.height = obj.height;
-  this.weight = obj.weight;
-}
-function Worker (...obj) {
-  let objArgs = obj.reduce( val => val);
-  Human.apply(this, obj); 
-  this.workPlace = objArgs.workPlace;
-  this.salary = objArgs.salary;   
-  this.toWork = function () {
-    console.log(`${this.name} is work, right now.`);
-  }   
-}
-function Student(...obj){
-  let objArgs = obj.reduce( val => val);
-  Human.apply(this, obj); 
-  this.studyPlace = objArgs.studyPlace;
-  this.scholarship = objArgs.scholarship;
-  this.toWatchShow = function () {
-    console.log(`${this.name} is watching the show.`);
+class Human {
+  constructor (obj) {
+    this.name = obj.name;
+    this.age = obj.age;
+    this.gender = obj.gender;
+    this.height = obj.height;
+    this.weight = obj.weight;
   }
 }
 
+class Worker extends Human {
+  constructor (obj) {
+    super(obj)
+    this.workPlace = obj.workPlace;
+    this.salary = obj.salary; 
+  }
+  toWork () {
+    console.log(`${this.name} is work, right now.`);
+  }  
+}
 
+class Student extends Human {
+  constructor (obj) {
+    super(obj)
+    this.studyPlace = obj.studyPlace;
+    this.scholarship = obj.scholarship;
+  }  
+  toWatchShow () {
+    console.log(`${this.name} is watching the show.`);
+  }
+}
 
 let vasya = new Human({name: 'Vasya', age: 24, gender: 'Male', height: 182, weight: 72});
 let grisha = new Worker({name: 'Grisha', age: 20, gender: 'Male', height: 178, weight: 65, salary: '2500$', workPlace: 'Microsoft'});
@@ -135,12 +137,13 @@ ira.toWatchShow();
  * Каждый раз при вызове внутренней функции в консоле будут отображаться аргументы функции
  * которую мы обернули
 */
-
-function showArgs(f){
-    f.apply(this);
-    console.log(arguments)
+let some = (a,b) => a + b;
+let decorator = (fn) => {
+  return (...args) => {
+    console.log(args);
+    return fn(...args)
+  }
 }
-function aloe (param1,param2,param3){}
-
-showArgs(aloe)
+let resultDecorator = decorator(some)
+console.log(resultDecorator(10,20))
 
