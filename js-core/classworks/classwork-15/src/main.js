@@ -31,37 +31,8 @@ const app = {
       testName.textContent = this.testName;
       const questionsList = this.newEl('ol');
       submit.onclick = function () {
-        //   let title = questionsList.children[1].children[0];
-        //   let first = questionsList.children[1].children[1].firstChild.children[0];
-        //   let last = questionsList.children[1].children[1].lastChild.children[0];
-          
-        //   first.checked = !first.checked;
-        //   last.checked = !last.checked;
-           
 
-        //   if(title.textContent === 'Вопрос 999'){
-        //     title.textContent = 'question 2';
-        //   }else{
-        //     title.textContent = 'Вопрос 999';
-        //   }
-
-
-        // let input1 = questionsList.children[0].children[1].children[1].children[0]
-        // let input2 = questionsList.children[1].children[1].children[1].children[0]
-        // let input3 = questionsList.children[2].children[1].children[1].children[0]
-        // input1.checked = !input1.checked;
-        // input2.checked = !input2.checked;
-        // input3.checked = !input3.checked;
-
-        let questions = main.querySelectorAll('ol>li>h3');
-
-        [...questions].forEach((val,i) => {
-                    
-            val.className === 'active' ? 
-            val.className = '' :
-            val.className = 'active';             
-        })
-        }
+      }
   
       /*
       *
@@ -75,7 +46,7 @@ const app = {
         const answers = this.newEl('ul');
 
         question.answers.forEach((answer, answerIndex) => {
-          answers.appendChild(this.renderAnswer(answer, answerIndex));
+          answers.innerHTML += (this.renderAnswer(answer, answerIndex));
         });
   
         li.appendChild(questionHeader);
@@ -89,19 +60,25 @@ const app = {
       document.body.appendChild(main);
     },
     renderAnswer(answer, answerIndex) {
-      const li = this.newEl('li');
-      const label = this.newEl('label');
       const uniqId = `uniq_${Math.random()}_${answerIndex}`;
-      label.setAttribute('for', uniqId);
-      label.textContent = answer;
+      // const li = this.newEl('li');
+      // const label = this.newEl('label');
+      // label.setAttribute('for', uniqId);
+      // label.textContent = answer;
   
-      const input = this.newEl('input');
-      input.setAttribute('type', 'checkbox');
-      input.setAttribute('id', uniqId);
+      // const input = this.newEl('input');
+      // input.setAttribute('type', 'checkbox');
+      // input.setAttribute('id', uniqId);
   
-      li.appendChild(input);
-      li.appendChild(label);
-      return li;
+      // li.appendChild(input);
+      // li.appendChild(label);
+
+      return `<li>
+                <input type="checkbox" id="${uniqId}">
+                <label for="${uniqId}">${answer}</label>
+              </li>`;
+
+      // return li;
     },
     newEl(elName) {
       return document.createElement(elName);
@@ -109,3 +86,39 @@ const app = {
   };
   
   app.render();
+
+//   let main = document.querySelector('.main');
+//   let span = document.createElement('span');
+//   span.textContent = 'SPAN';
+
+//   let newButton = document.createElement('button');
+//   newButton.textContent = 'ВЖУНЬ';
+//   document.body.appendChild(newButton);
+
+//   let answers = document.querySelectorAll('ul li label');
+
+//   newButton.onclick = function(){
+//     [...answers].forEach((val)=>{
+//       let correct = document.createElement('span');
+//       correct.textContent = 'CORRECT ';
+
+//       val.parentElement.insertBefore(correct,val);
+//     })
+    
+//   }
+
+// main.parentElement.insertBefore(span,main);
+
+
+
+// main.insertAdjacentHTML('beforeend', '<h1>QWERY</h1>');
+// main.insertAdjacentElement('afterbegin', newButton)
+
+// const javaScriptOneLove = [
+//   'Arrow',
+//   'Closures',
+//   'Classes'
+// ]
+// let ul = document.createElement('ul');
+
+// document.body.innerHTML += `<ul>${javaScriptOneLove.map(val => `<li>${val}</li>`).join('')}</ul>`
